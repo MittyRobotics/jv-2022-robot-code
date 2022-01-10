@@ -1,4 +1,4 @@
-package frc.robot;
+package com.github.mittyrobotics;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 

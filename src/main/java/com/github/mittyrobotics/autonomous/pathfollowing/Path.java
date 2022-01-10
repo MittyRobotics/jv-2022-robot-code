@@ -1,7 +1,5 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
-import math.*;
-
 import java.util.ArrayList;
 
 public class Path {
@@ -82,9 +80,9 @@ public class Path {
 
 
         if(parametric.getPoint(closestPointT).distance(robotPose.getPosition()) > adjust_threshold) {
-            math.Vector2D curVel = new math.Vector2D(velocity * robotPose.getAngle().cos(), velocity * robotPose.getAngle().sin());
+            Vector2D curVel = new Vector2D(velocity * robotPose.getAngle().cos(), velocity * robotPose.getAngle().sin());
             double acc = (velocity - prevVelocity) / dt;
-            math.Vector2D curAcc = new math.Vector2D(acc * robotPose.getAngle().cos(), acc * robotPose.getAngle().sin());
+            Vector2D curAcc = new Vector2D(acc * robotPose.getAngle().cos(), acc * robotPose.getAngle().sin());
 
             parametric = parametric.getNewPath(robotPose, curVel, curAcc);
 
@@ -92,21 +90,21 @@ public class Path {
 
         }
 
-        return path.PurePursuitController.purePursuit(purePursuitRadius, velocity, turnRight, trackwidth);
+        return PurePursuitController.purePursuit(purePursuitRadius, velocity, turnRight, trackwidth);
     }
 
     public void clearOldPreviewed() {
         previewVelocities.removeIf(previewVelocity -> previewVelocity.getY() <= distanceTraveled);
     }
 
-    public path.DifferentialDriveState update(math.Pose2D robotPose, double dt, double lookahead, double end_threshold, double trackwidth) {
+    public DifferentialDriveState update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double trackwidth) {
         return update(robotPose, dt, lookahead, end_threshold, 5*Path.TO_METERS, 30, trackwidth);
     }
 
     public double getMaxVelocityFromPreviews() {
         double min = Double.POSITIVE_INFINITY;
 
-        for(math.Vector2D vel : previewVelocities) {
+        for(Vector2D vel : previewVelocities) {
             min = Math.min(min, maxVelocityFromDistance(vel.y-distanceTraveled, vel.x, maxDeceleration));
         }
 
@@ -121,7 +119,7 @@ public class Path {
         return (curVelocity * curVelocity - endVelocity * endVelocity) / 2 * maxDeceleration;
     }
 
-    public double distanceFromSpline(Parametric parametric, math.Pose2D robotPose, int newtonsSteps) {
+    public double distanceFromSpline(Parametric parametric, Pose2D robotPose, int newtonsSteps) {
         closestPointT = parametric.findClosestPointOnSpline(robotPose.getPosition(), 0.01, newtonsSteps, 10);
 
         return parametric.getPoint(closestPointT).distance(robotPose.getPosition());
@@ -150,13 +148,13 @@ public class Path {
         return linearVelocity * getCurvature(t);
     }
 
-    public boolean isFinished(math.Pose2D robotPosition, double threshold) {
+    public boolean isFinished(Pose2D robotPosition, double threshold) {
         return (robotPosition.getPosition().distance(parametric.getPoint(1.0)) <= threshold) || distanceToEnd <= 0;
     }
 
     public Point2D getLookahead(double distanceTraveled, double lookahead) {
         if(distanceTraveled + lookahead > parametric.getLength()) {
-            math.Angle angle = parametric.getAngle(1);
+            Angle angle = parametric.getAngle(1);
             Point2D endpoint = parametric.getPoint(1);
             double distanceLeft = distanceTraveled + lookahead - parametric.getLength();
             return new Point2D(endpoint.getX() + distanceLeft * angle.cos(), endpoint.getY() + distanceLeft * angle.sin());
@@ -165,7 +163,7 @@ public class Path {
         }
     }
 
-    public Point2D getLookaheadFromRobotPose(math.Pose2D robotPose, double lookahead, int newtonsSteps) {
+    public Point2D getLookaheadFromRobotPose(Pose2D robotPose, double lookahead, int newtonsSteps) {
         closestPointT = parametric.findClosestPointOnSpline(robotPose.getPosition(), 0.01, newtonsSteps, 10);
         distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 11);
 

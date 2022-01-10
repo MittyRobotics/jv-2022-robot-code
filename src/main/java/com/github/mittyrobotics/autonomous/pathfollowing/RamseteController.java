@@ -5,7 +5,7 @@ public class RamseteController {
     public static double ex, ey, et, k, vel, angVel, rvel, rAngVel;
     public static Angle t, td;
 
-    public static path.DifferentialDriveState ramsete(Pose2D curPose, Pose2D desiredPose, double desiredVelocity, double desiredAngularVelocity, double b, double Z, double trackwidth) {
+    public static DifferentialDriveState ramsete(Pose2D curPose, Pose2D desiredPose, double desiredVelocity, double desiredAngularVelocity, double b, double Z, double trackwidth) {
         //https://file.tavsys.net/control/controls-engineering-in-frc.pdf
 
         //b > 0, 0 < Z < 1, larger b -> faster convergence, larger Z -> more dampening
@@ -38,7 +38,7 @@ public class RamseteController {
 //        if(desiredAngularVelocity == 0) {
 //            System.out.println("velocity: " + velocity + " | angularvelocity: " + angularVelocity);
 //        }
-        path.DifferentialDriveState dds = new path.DifferentialDriveState(trackwidth);
+        DifferentialDriveState dds = new DifferentialDriveState(trackwidth);
 
         dds.updateFromLinearAndAngularVelocity(rvel, rAngVel, trackwidth);
         return dds;

@@ -8,7 +8,7 @@ public class Line {
         this.y_int = y_int;
     }
 
-    public Line(Point2D point, math.Angle angle) {
+    public Line(Point2D point, Angle angle) {
         this.slope = angle.tan();
 
         this.y_int = point.getY() - point.getX() * this.slope;

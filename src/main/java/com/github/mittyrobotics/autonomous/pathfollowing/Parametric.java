@@ -430,12 +430,12 @@ public class Parametric {
     }
 
     public Parametric getNewPath(Pose2D newPos, Vector2D newVel, Vector2D newAcc) {
-        if(this instanceof splines.QuinticHermiteSpline) {
+        if(this instanceof QuinticHermiteSpline) {
             if(newVel.getMagnitude() == 0) {
-                return new splines.QuinticHermiteSpline(newPos, ((splines.QuinticHermiteSpline) this).getPose1());
+                return new QuinticHermiteSpline(newPos, ((QuinticHermiteSpline) this).getPose1());
             }
-            return new splines.QuinticHermiteSpline(newPos, ((splines.QuinticHermiteSpline) this).getPose1(), newVel,
-                    ((splines.QuinticHermiteSpline) this).getVelocity1(), newAcc, ((splines.QuinticHermiteSpline) this).getAcceleration1());
+            return new QuinticHermiteSpline(newPos, ((QuinticHermiteSpline) this).getPose1(), newVel,
+                    ((QuinticHermiteSpline) this).getVelocity1(), newAcc, ((QuinticHermiteSpline) this).getAcceleration1());
         }
         return new Parametric();
     }

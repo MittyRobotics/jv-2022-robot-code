@@ -12,7 +12,7 @@ public class Pose2D {
         this(new Point2D(), new Angle());
     }
 
-    public Pose2D(math.Vector2D position, Angle angle) {
+    public Pose2D(Vector2D position, Angle angle) {
         this.angle = angle;
         this.position = new Point2D(position);
         this.x = position.getX();

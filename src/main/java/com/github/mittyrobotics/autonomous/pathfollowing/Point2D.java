@@ -13,7 +13,7 @@ public class Point2D {
         this(0, 0);
     }
 
-    public Point2D(math.Vector2D v) {
+    public Point2D(Vector2D v) {
         this(v.getX(), v.getY());
     }
 

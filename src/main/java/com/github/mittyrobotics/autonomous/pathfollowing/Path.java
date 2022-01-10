@@ -14,9 +14,9 @@ public class Path {
 
     protected double prevVelocity, distanceTraveled, closestPointT, distanceToEnd, maxVelocityToEnd, velocity, purePursuitRadius;
     protected boolean turnRight;
-    protected math.Circle tangentCircle = new math.Circle();
+    protected Circle tangentCircle = new Circle();
     protected Point2D lookaheadPoint = new Point2D();
-    protected ArrayList<math.Vector2D> previewVelocities = new ArrayList<>();
+    protected ArrayList<Vector2D> previewVelocities = new ArrayList<>();
 
     public Path(Parametric parametric, double maxAcceleration, double maxDeceleration, double maxVelocity, double maxAngularVelocity, double startVelocity, double endVelocity) {
         this.parametric = parametric;
@@ -40,7 +40,7 @@ public class Path {
         this(parametric, maxAcceleration, maxVelocity, 0, 0);
     }
 
-    public path.DifferentialDriveState update(math.Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth) {
+    public DifferentialDriveState update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth) {
         closestPointT = parametric.findClosestPointOnSpline(robotPose.getPosition(), 0.01, newtonsSteps, 10);
         distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 11);
 
@@ -52,7 +52,7 @@ public class Path {
         double previewT = parametric.getTFromLength(distanceTraveled + previewDistance);
         double maxVelocityAtPreview = maxVelocityFromT(previewT);
 
-        previewVelocities.add(new math.Vector2D(maxVelocityAtPreview, distanceTraveled + previewDistance));
+        previewVelocities.add(new Vector2D(maxVelocityAtPreview, distanceTraveled + previewDistance));
         clearOldPreviewed();
 
         double maxVelocityFromPreviews = getMaxVelocityFromPreviews();

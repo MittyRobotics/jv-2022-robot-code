@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 
 
 public class Robot extends TimedRobot {
+  //TODO: Fix shooter theta assignment
 
   @Override
   public void robotInit() {

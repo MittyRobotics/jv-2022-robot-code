@@ -29,7 +29,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     }
 
-    public void turnToAngle(Angle theta) {
+    public void turnRadians(Angle theta) {
 
     }
 }

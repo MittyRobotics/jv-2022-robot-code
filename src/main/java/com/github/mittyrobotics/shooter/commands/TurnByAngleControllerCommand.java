@@ -5,11 +5,11 @@ import com.github.mittyrobotics.shooter.ShooterSubsystem;
 import com.github.mittyrobotics.util.OI;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class TurnToAngleControllerCommand extends CommandBase {
+public class TurnByAngleControllerCommand extends CommandBase {
     private Angle theta;
 
-    public TurnToAngleControllerCommand() {
-        setName("Turn To Angle");
+    public TurnByAngleControllerCommand() {
+        setName("Turn By Angle - Controller");
         addRequirements(ShooterSubsystem.getInstance());
     }
 

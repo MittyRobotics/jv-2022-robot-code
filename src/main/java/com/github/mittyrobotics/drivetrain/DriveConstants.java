@@ -29,23 +29,31 @@ package com.github.mittyrobotics.drivetrain;
  */
 public class DriveConstants {
 
+    // regular tank drive
     public static final double DRIVE_THRESHOLD = 0.02;
-    public static final double DRIVE_BOOST = 1.4;
     public static final double DRIVE_TRIGGER_THRESHOLD = 0.1;
+
+    // tankish drive
+    public static final double DRIVE_BOOST = 1.4;
     public static final double TURN_RATIO = 1;
     public static final double FINAL_MULTIPLIER = 0.25;
 
+    // drive settings
     public static final double TICKS_PER_INCH = 15359.0/24.0;
-    public static final int LEFT_FALCON_MASTER_ID = 10;
-    public static final int LEFT_FALCON_SLAVE_ID = 11;
-    public static final int RIGHT_FALCON_MASTER_ID = 12;
-    public static final int RIGHT_FALCON_SLAVE_ID = 13;
-    public static final double DRIVE_FALCON_FF = (.4*12.0)/122.1;
-    public static final double DRIVE_FALCON_P = 0.05;
-    public static final boolean LEFT_FACLON_MASTER_INVERSION = false;
-    public static final boolean LEFT_FACLON_SLAVE_INVERSION = false;
-    public static final boolean RIGHT_FACLON_MASTER_INVERSION = true;
-    public static final boolean RIGHT_FACLON_SLAVE_INVERSION = true;
+
+    public static final int LEFT_FALCON_1 = 10;
+    public static final int LEFT_FALCON_2 = 11;
+    public static final int RIGHT_FALCON_1 = 12;
+    public static final int RIGHT_FALCON_2 = 13;
+
+    public static final boolean LEFT_FALCON_1_INVERT = false;
+    public static final boolean LEFT_FALCON_2_INVERT = false;
+    public static final boolean RIGHT_FALCON_1_INVERT = true;
+    public static final boolean RIGHT_FALCON_2_INVERT = true;
     public static final boolean LEFT_ENCODER_INVERSION = true;
     public static final boolean RIGHT_ENCODER_INVERSION = true;
+
+    public static final double DRIVE_FALCON_FF = (.4*12.0)/122.1;
+    public static final double DRIVE_FALCON_P = 0.05;
+
 }

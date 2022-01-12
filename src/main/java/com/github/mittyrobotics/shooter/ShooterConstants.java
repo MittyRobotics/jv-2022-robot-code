@@ -1,2 +1,4 @@
-package com.github.mittyrobotics.shooter;public class ShooterConstants {
+package com.github.mittyrobotics.shooter;
+
+public class ShooterConstants {
 }

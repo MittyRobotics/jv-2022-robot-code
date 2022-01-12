@@ -1,5 +1,6 @@
 package com.github.mittyrobotics.shooter;
 
+import com.github.mittyrobotics.autonomous.pathfollowing.Angle;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -25,6 +26,10 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public void updateDashboard() {
+
+    }
+
+    public void turnToAngle(Angle theta) {
 
     }
 }

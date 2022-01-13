@@ -1,6 +1,8 @@
 package com.github.mittyrobotics;
 
+import com.github.mittyrobotics.autonomous.vision.Limelight;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends TimedRobot {
@@ -13,17 +15,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-
+    SmartDashboard.updateValues();
   }
 
   @Override
   public void autonomousInit() {
-
   }
 
   @Override
   public void autonomousPeriodic() {
+    Limelight.getInstance().updateLimelightValues();
 
+    SmartDashboard.putNumber("Limelight Pipeline: ", Limelight.getInstance().getPipeline());
   }
 
 

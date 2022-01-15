@@ -65,7 +65,7 @@ dependencies {
     nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
     simulationDebug wpi.sim.enableDebug()
 
-    testImplementation 'com.github.MittyRobotics:tko-libraries:c8429c2ef7'
+    implementation 'com.github.MittyRobotics:tko-libraries:c8429c2ef7'
 
     nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
     nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)

@@ -7,11 +7,14 @@ import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import com.github.mittyrobotics.drivetrain.commands.ManualTankDriveCommand;
 import com.github.mittyrobotics.util.Gyro;
 import com.github.mittyrobotics.util.SubsystemManager;
+import com.github.mittyrobotics.autonomous.vision.Limelight;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends TimedRobot {
+  //TODO: Fix shooter theta assignment
 
     @Override
     public void robotInit() {
@@ -33,6 +36,7 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         CommandScheduler.getInstance().run();
         SubsystemManager.getInstance().updateDashboard();
+    SmartDashboard.updateValues();
 
         Odometry.getInstance().update(DrivetrainSubsystem.getInstance().getLeftPosition() * Path.TO_METERS, DrivetrainSubsystem.getInstance().getRightPosition() * Path.TO_METERS, Gyro.getInstance().getAngle360());
     }
@@ -45,11 +49,16 @@ public class Robot extends TimedRobot {
       Odometry.getInstance().zeroHeading(Gyro.getInstance().getAngle360());
       Odometry.getInstance().zeroPosition();
 
+  @Override
+  public void autonomousPeriodic() {
+    Limelight.getInstance().updateLimelightValues();
       QuinticHermiteSpline spline = new QuinticHermiteSpline(
               new Pose2D(0, 0, 0),
               new Pose2D(120 * Path.TO_METERS, 50 * Path.TO_METERS, 0)
       );
 
+    SmartDashboard.putNumber("Limelight Pipeline: ", Limelight.getInstance().getPipeline());
+  }
 
         Path path = new Path(spline,
                 80 * Path.TO_METERS, 80 * Path.TO_METERS,

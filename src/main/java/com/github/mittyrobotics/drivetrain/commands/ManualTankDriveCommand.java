@@ -27,7 +27,6 @@ package com.github.mittyrobotics.drivetrain.commands;
 import com.github.mittyrobotics.drivetrain.DriveConstants;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import com.github.mittyrobotics.util.OI;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 

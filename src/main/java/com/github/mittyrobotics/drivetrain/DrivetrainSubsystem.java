@@ -26,7 +26,6 @@ package com.github.mittyrobotics.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.util.Gyro;
 import com.github.mittyrobotics.util.interfaces.IDualMotorSubsystem;
 import edu.wpi.first.math.MathUtil;
@@ -88,21 +87,21 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
     @Override
     public void initHardware() {
 
-        leftDrive[0] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_MASTER_ID);
-        leftDrive[1] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_FOLLOWER_ID);
-        rightDrive[0] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_MASTER_ID);
-        rightDrive[1] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_FOLLOWER_ID);
+        leftDrive[0] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_1);
+        leftDrive[1] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_2);
+        rightDrive[0] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_1);
+        rightDrive[1] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_2);
 
         leftDrive[0].configFactoryDefault();
         leftDrive[1].configFactoryDefault();
         rightDrive[0].configFactoryDefault();
         rightDrive[1].configFactoryDefault();
 
-        leftDrive[0].setInverted(DriveConstants.LEFT_FALCON_MASTER_INVERSION);
-        leftDrive[1].setInverted(DriveConstants.LEFT_FALCON_FOLLOWER_INVERSION);
+        leftDrive[0].setInverted(DriveConstants.LEFT_FALCON_1_INVERT);
+        leftDrive[1].setInverted(DriveConstants.LEFT_FALCON_2_INVERT);
 
-        rightDrive[0].setInverted(DriveConstants.RIGHT_FALCON_MASTER_INVERSION);
-        rightDrive[1].setInverted(DriveConstants.RIGHT_FALCON_FOLLOWER_INVERSION);
+        rightDrive[0].setInverted(DriveConstants.RIGHT_FALCON_1_INVERT);
+        rightDrive[1].setInverted(DriveConstants.RIGHT_FALCON_2_INVERT);
 
         leftDrive[0].setSensorPhase(DriveConstants.LEFT_ENCODER_INVERSION);
         rightDrive[0].setSensorPhase(DriveConstants.RIGHT_ENCODER_INVERSION);
@@ -128,9 +127,6 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
         SmartDashboard.putNumber("Drive Velocity Right Setpoint", getRightVelSetpoint());
         SmartDashboard.putNumber("Drive Position Left", getLeftPosition());
         SmartDashboard.putNumber("Drive Position Right", getRightPosition());
-        SmartDashboard.putNumber("Drive X", Odometry.getInstance().getRobotVector().getX());
-        SmartDashboard.putNumber("Drive Y", Odometry.getInstance().getRobotVector().getY());
-        SmartDashboard.putNumber("Gyro Angle", Gyro.getInstance().getAngle360());
     }
 
     public void setMode(NeutralMode mode) {

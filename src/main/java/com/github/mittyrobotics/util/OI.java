@@ -24,35 +24,21 @@
 
 package com.github.mittyrobotics.util;
 
-import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
-import com.github.mittyrobotics.drivetrain.commands.ManualTankDriveCommand;
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * OI Class to manage all controllers and input
  */
 public class OI {
-    /**
-     * {@link OI} instance
-     */
+
+
     private static OI instance;
 
-    /**
-     * OI {@link XboxController}
-     */
-    private XboxController xboxController;
-    private XboxController xboxController2;
 
-    /**
-     * Variable to store if the robot is in auto shoot mode
-     */
-    private boolean inAutoShootMode = false;
+    private XboxController driverController;
+    private XboxController operatorController;
 
-    /**
-     * Returns an {@link OI} instance
-     *
-     * @return {@link OI} instance
-     */
+
     public static OI getInstance() {
         if (instance == null) {
             instance = new OI();
@@ -60,39 +46,21 @@ public class OI {
         return instance;
     }
 
-    /**
-     * Returns the {@link XboxController} instance
-     *
-     * @return {@link XboxController} instance
-     */
-    public XboxController getXboxController() {
-        if (xboxController == null) {
-            xboxController = new XboxController(OIConstants.XBOX_CONTROLLER_ID);
+    public XboxController getDriverController() {
+        if (driverController == null) {
+            driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_ID);
         }
-        return xboxController;
+        return driverController;
     }
 
-    public XboxController getXboxController2() {
-        if (xboxController2 == null) {
-            xboxController2 = new XboxController(OIConstants.XBOX_CONTROLLER_2_ID);
+    public XboxController getOperatorController() {
+        if (operatorController == null) {
+            operatorController = new XboxController(OIConstants.OPERATOR_CONTROLLER_ID);
         }
-        return xboxController2;
+        return operatorController;
     }
 
-    public void testSetupControls() {
-
-    }
-
-        /**
-     * Setup controls
-     */
     public void setupControls() {
-        // DRIVER CONTROLS
-        DrivetrainSubsystem.getInstance().setDefaultCommand(new ManualTankDriveCommand());
-
-        // OPERATOR CONTROLS
-        // --------------------------
-
 
     }
 }

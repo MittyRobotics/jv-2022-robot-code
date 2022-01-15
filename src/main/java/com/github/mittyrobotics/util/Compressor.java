@@ -26,6 +26,7 @@ package com.github.mittyrobotics.util;
 
 
 import com.github.mittyrobotics.util.interfaces.IHardware;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 /**
  * Compressor Class in the form of a singleton
@@ -41,7 +42,7 @@ public class Compressor extends edu.wpi.first.wpilibj.Compressor implements IHar
      * Calls {@link edu.wpi.first.wpilibj.Compressor} constructor
      */
     private Compressor() {
-        super();
+        super(PneumaticsModuleType.CTREPCM);
     }
 
     /**
@@ -61,7 +62,6 @@ public class Compressor extends edu.wpi.first.wpilibj.Compressor implements IHar
      */
     @Override
     public void initHardware() {
-        start();
-        setClosedLoopControl(true);
+        enableDigital();
     }
 }

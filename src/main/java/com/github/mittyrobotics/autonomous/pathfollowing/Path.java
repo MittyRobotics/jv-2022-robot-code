@@ -63,7 +63,7 @@ public class Path {
             velocity = Math.min(velocity, maxCurvatureVelocity);
         }
 
-        distanceToEnd = parametric.getLength() - distanceTraveled - (velocity * dt) - end_threshold;
+        distanceToEnd = parametric.getLength() - distanceTraveled;
 
         maxVelocityToEnd = maxVelocityFromDistance(distanceToEnd, endVelocity, maxDeceleration);
 

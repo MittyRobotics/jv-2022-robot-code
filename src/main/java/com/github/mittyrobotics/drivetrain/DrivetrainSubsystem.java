@@ -29,9 +29,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.util.Gyro;
 import com.github.mittyrobotics.util.interfaces.IDualMotorSubsystem;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpiutil.math.MathUtil;
 
 /**
  * Drivetrain Subsystem to move the chassis
@@ -89,20 +89,20 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
     public void initHardware() {
 
         leftDrive[0] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_MASTER_ID);
-        leftDrive[1] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_SLAVE_ID);
+        leftDrive[1] = new WPI_TalonFX(DriveConstants.LEFT_FALCON_FOLLOWER_ID);
         rightDrive[0] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_MASTER_ID);
-        rightDrive[1] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_SLAVE_ID);
+        rightDrive[1] = new WPI_TalonFX(DriveConstants.RIGHT_FALCON_FOLLOWER_ID);
 
         leftDrive[0].configFactoryDefault();
         leftDrive[1].configFactoryDefault();
         rightDrive[0].configFactoryDefault();
         rightDrive[1].configFactoryDefault();
 
-        leftDrive[0].setInverted(DriveConstants.LEFT_FACLON_MASTER_INVERSION);
-        leftDrive[1].setInverted(DriveConstants.LEFT_FACLON_SLAVE_INVERSION);
+        leftDrive[0].setInverted(DriveConstants.LEFT_FALCON_MASTER_INVERSION);
+        leftDrive[1].setInverted(DriveConstants.LEFT_FALCON_FOLLOWER_INVERSION);
 
-        rightDrive[0].setInverted(DriveConstants.RIGHT_FACLON_MASTER_INVERSION);
-        rightDrive[1].setInverted(DriveConstants.RIGHT_FACLON_SLAVE_INVERSION);
+        rightDrive[0].setInverted(DriveConstants.RIGHT_FALCON_MASTER_INVERSION);
+        rightDrive[1].setInverted(DriveConstants.RIGHT_FALCON_FOLLOWER_INVERSION);
 
         leftDrive[0].setSensorPhase(DriveConstants.LEFT_ENCODER_INVERSION);
         rightDrive[0].setSensorPhase(DriveConstants.RIGHT_ENCODER_INVERSION);

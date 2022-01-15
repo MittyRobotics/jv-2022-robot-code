@@ -24,12 +24,9 @@
 
 package com.github.mittyrobotics.util;
 
-import com.github.mittyrobotics.core.math.geometry.Rotation;
+import com.github.mittyrobotics.autonomous.pathfollowing.Angle;
 import com.github.mittyrobotics.util.interfaces.IHardware;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.SPI;
-
-import static com.github.mittyrobotics.core.math.units.ConversionsKt.degrees;
 
 /**
  * Gyro class in the form of a singleton
@@ -71,12 +68,12 @@ public class Gyro extends ADXRS450_Gyro implements IHardware {
     }
 
     /**
-     * Returns the angle in the form of a {@link Rotation}
+     * Returns the angle in the form of a {@link Angle}
      *
-     * @return {@link Rotation} angle
+     * @return {@link Angle} angle
      */
-    public Rotation getRotation() {
-        return new Rotation(degrees(getAngle360()));
+    public Angle getRotation() {
+        return new Angle(getAngle360() * Math.PI / 180);
     }
 
     /**

@@ -5,30 +5,36 @@ import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.autonomous.pathfollowing.DifferentialDriveState;
 import com.github.mittyrobotics.autonomous.pathfollowing.Path;
 import com.github.mittyrobotics.autonomous.pathfollowing.Pose2D;
+import com.github.mittyrobotics.autonomous.pathfollowing.RamsetePath;
+import com.github.mittyrobotics.core.math.geometry.Rotation;
+import com.github.mittyrobotics.core.math.geometry.Transform;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class PurePursuitPFCommand extends CommandBase {
+import static com.github.mittyrobotics.core.math.units.ConversionsKt.degrees;
+import static com.github.mittyrobotics.core.math.units.ConversionsKt.inches;
 
-    private Path trajectory;
+public class RamsetePFCommand extends CommandBase {
+    private RamsetePath trajectory;
     private double lastTime;
-    private double LOOKAHEAD, end_threshold, adjust_threshold;
-    private final double TRACKWIDTH = 25.0 * Path.TO_METERS;
+    private final double TRACKWIDTH = inches(25.0);
+    private double b, Z, end_threshold, adjust_threshold;
     private boolean reverse;
 
-    public PurePursuitPFCommand(Path trajectory, double LOOKAHEAD, double end_threshold, double adjust_threshold, boolean reverse) {
+    public RamsetePFCommand(RamsetePath trajectory, double b, double Z, double end_threshold, double adjust_threshold, boolean reverse) {
         addRequirements(DrivetrainSubsystem.getInstance());
-        this.trajectory = trajectory;
-        this.reverse = reverse;
+        this.b = b;
+        this.Z = Z;
         this.end_threshold = end_threshold;
         this.adjust_threshold = adjust_threshold;
-        this.LOOKAHEAD = LOOKAHEAD;
+        this.trajectory = trajectory;
+        this.reverse = reverse;
     }
 
-    public PurePursuitPFCommand(Path trajectory, double LOOKAHEAD, boolean reverse) {
-        this(trajectory, LOOKAHEAD, 1 * Path.TO_METERS, 3 * Path.TO_METERS, reverse);
+    public RamsetePFCommand(RamsetePath trajectory, double b, double Z, boolean reverse) {
+        this(trajectory, b, Z, inches(1), inches(5), reverse);
     }
 
     @Override
@@ -46,8 +52,8 @@ public class PurePursuitPFCommand extends CommandBase {
         Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getAngle() + (reverse ? Math.PI : 0));
 
 
-//        update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth)
-        DifferentialDriveState dds = trajectory.update(robotPose, dt, LOOKAHEAD, end_threshold, adjust_threshold, 30, TRACKWIDTH);
+//        public DifferentialDriveState update(Pose2D robotPose, double dt, double end_threshold, double adjust_threshold, int newtonsSteps, double b, double Z, double trackwidth) {
+        DifferentialDriveState dds = trajectory.update(robotPose, dt, end_threshold, adjust_threshold, 50, b, Z, TRACKWIDTH);
 
         if(reverse) {
             DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity() * Path.TO_INCHES, -dds.getLeftVelocity() * Path.TO_INCHES);

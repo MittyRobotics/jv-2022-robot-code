@@ -2,6 +2,7 @@ package com.github.mittyrobotics;
 
 import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.autonomous.commands.PurePursuitPFCommand;
+import com.github.mittyrobotics.autonomous.commands.RamsetePFCommand;
 import com.github.mittyrobotics.autonomous.pathfollowing.*;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import com.github.mittyrobotics.drivetrain.commands.ManualTankDriveCommand;
@@ -11,6 +12,8 @@ import com.github.mittyrobotics.autonomous.vision.Limelight;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import static com.github.mittyrobotics.core.math.units.ConversionsKt.inches;
 
 
 public class Robot extends TimedRobot {
@@ -52,14 +55,25 @@ public class Robot extends TimedRobot {
                 new Pose2D(120 * Path.TO_METERS, 50 * Path.TO_METERS, 0)
         );
 
-        Path path = new Path(spline,
-                80 * Path.TO_METERS, 80 * Path.TO_METERS,
-                100 * Path.TO_METERS, 160 * Path.TO_METERS,
+//        Path path = new Path(spline,
+//                80 * Path.TO_METERS, 80 * Path.TO_METERS,
+//                100 * Path.TO_METERS, 160 * Path.TO_METERS,
+//                0 * Path.TO_METERS, 0 * Path.TO_METERS
+//        );
+//
+//
+//        PurePursuitPFCommand pathCommand = new PurePursuitPFCommand(path, 15 * Path.TO_METERS, 2 * Path.TO_METERS, 5 * Path.TO_METERS, false);
+//
+//        pathCommand.schedule();
+
+        RamsetePath path = new RamsetePath(spline,
+                100 * Path.TO_METERS, 100 * Path.TO_METERS,
+                100 * Path.TO_METERS, 10000 * Path.TO_METERS,
                 0 * Path.TO_METERS, 0 * Path.TO_METERS
         );
 
 
-        PurePursuitPFCommand pathCommand = new PurePursuitPFCommand(path, 15 * Path.TO_METERS, 2 * Path.TO_METERS, 5 * Path.TO_METERS, false);
+        RamsetePFCommand pathCommand = new RamsetePFCommand(path, 5, 0.2, 3 * Path.TO_METERS, 100000, false);
 
         pathCommand.schedule();
     }
@@ -71,7 +85,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Limelight Pipeline: ", Limelight.getInstance().getPipeline());
 
     }
-    
+
     @Override
     public void teleopInit() {
         DrivetrainSubsystem.getInstance().setDefaultCommand(new ManualTankDriveCommand());

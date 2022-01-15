@@ -51,11 +51,11 @@ public class ManualTankDriveCommand extends CommandBase {
      */
     @Override
     public void execute() {
-        if (OI.getInstance().getXboxController().getLeftTriggerAxis() > DriveConstants.DRIVE_TRIGGER_THRESHOLD) {
+        if (OI.getInstance().getDriverController().getLeftTriggerAxis() > DriveConstants.DRIVE_TRIGGER_THRESHOLD) {
             DrivetrainSubsystem.getInstance().brake();
         } else {
-            double left = -OI.getInstance().getXboxController().getLeftY();
-            double right = -OI.getInstance().getXboxController().getRightY();
+            double left = -OI.getInstance().getDriverController().getRightY();
+            double right = -OI.getInstance().getDriverController().getLeftY();
 
             DrivetrainSubsystem.getInstance().tankDrive(left, right,
                     DriveConstants.DRIVE_THRESHOLD, 0.6);

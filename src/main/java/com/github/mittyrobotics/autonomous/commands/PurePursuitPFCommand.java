@@ -1,13 +1,13 @@
 package com.github.mittyrobotics.autonomous.commands;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.github.mittyrobotics.autonomous.AutonomousConstants;
 import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.autonomous.pathfollowing.DifferentialDriveState;
 import com.github.mittyrobotics.autonomous.pathfollowing.Path;
 import com.github.mittyrobotics.autonomous.pathfollowing.Pose2D;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class PurePursuitPFCommand extends CommandBase {
@@ -15,7 +15,7 @@ public class PurePursuitPFCommand extends CommandBase {
     private Path trajectory;
     private double lastTime;
     private double LOOKAHEAD, end_threshold, adjust_threshold;
-    private final double TRACKWIDTH = 25.0 * Path.TO_METERS;
+    private final double TRACKWIDTH = AutonomousConstants.TRACKWIDTH;
     private boolean reverse;
 
     public PurePursuitPFCommand(Path trajectory, double LOOKAHEAD, double end_threshold, double adjust_threshold, boolean reverse) {

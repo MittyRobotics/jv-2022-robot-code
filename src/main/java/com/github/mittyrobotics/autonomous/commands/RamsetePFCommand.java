@@ -1,25 +1,20 @@
 package com.github.mittyrobotics.autonomous.commands;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.github.mittyrobotics.autonomous.AutonomousConstants;
 import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.autonomous.pathfollowing.DifferentialDriveState;
 import com.github.mittyrobotics.autonomous.pathfollowing.Path;
 import com.github.mittyrobotics.autonomous.pathfollowing.Pose2D;
 import com.github.mittyrobotics.autonomous.pathfollowing.RamsetePath;
-import com.github.mittyrobotics.core.math.geometry.Rotation;
-import com.github.mittyrobotics.core.math.geometry.Transform;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import static com.github.mittyrobotics.core.math.units.ConversionsKt.degrees;
-import static com.github.mittyrobotics.core.math.units.ConversionsKt.inches;
 
 public class RamsetePFCommand extends CommandBase {
     private RamsetePath trajectory;
     private double lastTime;
-    private final double TRACKWIDTH = inches(25.0);
+    private final double TRACKWIDTH = AutonomousConstants.TRACKWIDTH;
     private double b, Z, end_threshold, adjust_threshold;
     private boolean reverse;
 
@@ -34,7 +29,7 @@ public class RamsetePFCommand extends CommandBase {
     }
 
     public RamsetePFCommand(RamsetePath trajectory, double b, double Z, boolean reverse) {
-        this(trajectory, b, Z, inches(1), inches(5), reverse);
+        this(trajectory, b, Z, 1 * Path.TO_METERS, 5 * Path.TO_METERS, reverse);
     }
 
     @Override

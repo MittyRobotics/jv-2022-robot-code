@@ -1,19 +1,16 @@
 package com.github.mittyrobotics;
 
 import com.github.mittyrobotics.autonomous.Odometry;
-import com.github.mittyrobotics.autonomous.commands.PurePursuitPFCommand;
-import com.github.mittyrobotics.autonomous.commands.RamsetePFCommand;
+import com.github.mittyrobotics.autonomous.commands.*;
 import com.github.mittyrobotics.autonomous.pathfollowing.*;
+import com.github.mittyrobotics.autonomous.vision.Limelight;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import com.github.mittyrobotics.drivetrain.commands.ManualTankDriveCommand;
 import com.github.mittyrobotics.util.Gyro;
 import com.github.mittyrobotics.util.SubsystemManager;
-import com.github.mittyrobotics.autonomous.vision.Limelight;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import static com.github.mittyrobotics.core.math.units.ConversionsKt.inches;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 
 public class Robot extends TimedRobot {

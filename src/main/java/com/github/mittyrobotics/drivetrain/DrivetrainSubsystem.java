@@ -26,7 +26,6 @@ package com.github.mittyrobotics.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.github.mittyrobotics.util.Gyro;
 import com.github.mittyrobotics.util.interfaces.IDualMotorSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

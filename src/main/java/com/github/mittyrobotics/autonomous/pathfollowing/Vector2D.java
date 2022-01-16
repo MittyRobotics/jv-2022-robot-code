@@ -55,7 +55,11 @@ public class Vector2D {
         return Math.sqrt((other.getX() - x) * (other.getX() - x) + (other.getY() - y) * (other.getY() - y));
     }
 
-    public void print() {
-        System.out.println("(" + x + ", " + y + ")");
+    public String toString() {
+        return "(" + x * Path.TO_INCHES + ", " + y * Path.TO_INCHES + ")";
+    }
+
+    public String toStringMetric() {
+        return "(" + x + ", " + y + ")";
     }
 }

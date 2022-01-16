@@ -57,4 +57,12 @@ public class DifferentialDriveState {
     public double getAngularVelocity() {
         return angularVelocity;
     }
+
+    public String toString() {
+        return "left velocity = " + leftVelocity * Path.TO_INCHES + ", right velocity = " + rightVelocity * Path.TO_INCHES;
+    }
+
+    public String toStringMetric() {
+        return "left velocity = " + leftVelocity + ", right velocity = " + rightVelocity;
+    }
 }

@@ -4,10 +4,6 @@ public class Pose2D {
     private Point2D position;
     private Angle angle;
 
-    private double x;
-    private double y;
-    private double rotation;
-
     public Pose2D() {
         this(new Point2D(), new Angle());
     }
@@ -15,24 +11,14 @@ public class Pose2D {
     public Pose2D(Vector2D position, Angle angle) {
         this.angle = angle;
         this.position = new Point2D(position);
-        this.x = position.getX();
-        this.y = position.getY();
-        this.rotation = angle.getAngle();
     }
 
     public Pose2D(Point2D position, Angle angle) {
         this.angle = angle;
         this.position = position;
-        this.x = position.getX();
-        this.y = position.getY();
-        this.rotation = angle.getAngle();
     }
 
     public Pose2D(double x, double y, double angle) {
-        this.x = x;
-        this.y = y;
-        this.rotation = angle;
-
         this.position = new Point2D(x, y);
         this.angle = new Angle(angle);
     }
@@ -45,15 +31,15 @@ public class Pose2D {
         return position;
     }
 
-    public double getAngleRadians() {
-        return rotation;
-    }
-
     public Angle getAngle() {
         return angle;
     }
 
-    public void print() {
-        System.out.println("(" + position.getX() + ", " + position.getY() + ", " + rotation + " rad)");
+    public String toString() {
+        return position.toString() + ", " + angle.toString();
+    }
+
+    public String toStringMetric() {
+        return position.toStringMetric() + ", " + angle.toStringMetric();
     }
 }

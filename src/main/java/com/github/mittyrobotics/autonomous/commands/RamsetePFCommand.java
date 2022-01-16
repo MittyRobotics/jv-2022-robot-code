@@ -44,7 +44,7 @@ public class RamsetePFCommand extends CommandBase {
         double dt = Timer.getFPGATimestamp() - lastTime;
 
 
-        Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getAngle() + (reverse ? Math.PI : 0));
+        Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getRadians() + (reverse ? Math.PI : 0));
 
 
 //        public DifferentialDriveState update(Pose2D robotPose, double dt, double end_threshold, double adjust_threshold, int newtonsSteps, double b, double Z, double trackwidth) {
@@ -66,7 +66,7 @@ public class RamsetePFCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getAngle() + (reverse ? Math.PI : 0));
+        Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getRadians() + (reverse ? Math.PI : 0));
 
         return trajectory.isFinished(robotPose, end_threshold);
     }

@@ -1,8 +1,8 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class Point2D {
-    public double x;
-    public double y;
+    private double x;
+    private double y;
 
     public Point2D(double x, double y) {
         this.x = x;
@@ -37,7 +37,11 @@ public class Point2D {
         return Math.sqrt(x * x + y * y);
     }
 
-    public void print() {
-        System.out.println("(" + x + ", " + y + ")");
+    public String toString() {
+        return "(" + x * Path.TO_INCHES + ", " + y * Path.TO_INCHES + ")";
+    }
+
+    public String toStringMetric() {
+        return "(" + x + ", " + y + ")";
     }
 }

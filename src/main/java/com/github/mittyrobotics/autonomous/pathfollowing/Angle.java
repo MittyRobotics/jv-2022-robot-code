@@ -20,6 +20,9 @@ public class Angle {
     }
 
     public double tan() {
+        if(Math.cos(radians) == 0) {
+            return (Math.sin(radians) > 0 ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY);
+        }
         return Math.tan(radians);
     }
 
@@ -31,12 +34,16 @@ public class Angle {
         return Math.cos(radians);
     }
 
-    public double getAngle() {
+    public double getRadians() {
         return radians;
     }
 
-    public void print() {
-        System.out.println(radians + " Radians");
+    public String toString() {
+        return radians * 180 / Math.PI + "°";
+    }
+
+    public String toStringMetric() {
+        return radians + "";
     }
 
     public double getAngleBetween(Angle other) {

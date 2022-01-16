@@ -18,10 +18,10 @@ public class RamseteController {
 
         t = curPose.getAngle();
         td = desiredPose.getAngle();
-        double x = curPose.getPosition().x;
-        double xd = desiredPose.getPosition().x;
-        double y = curPose.getPosition().y;
-        double yd = desiredPose.getPosition().y;
+        double x = curPose.getPosition().getX();
+        double xd = desiredPose.getPosition().getX();
+        double y = curPose.getPosition().getY();
+        double yd = desiredPose.getPosition().getY();
 
         ex = t.cos() * (xd - x) + t.sin() * (yd - y);
         ey = t.sin() * (x - xd) + t.cos() * (yd - y);

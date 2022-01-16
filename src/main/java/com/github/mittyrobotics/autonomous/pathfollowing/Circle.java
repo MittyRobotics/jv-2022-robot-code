@@ -1,10 +1,12 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class Circle {
-    double radius;
-    Point2D center;
+    private double radius;
+    private Point2D center;
 
-    public Circle() {}
+    public Circle() {
+        this(0, new Point2D());
+    }
 
     public Circle(double radius, Point2D center) {
         this.radius = radius;
@@ -24,12 +26,12 @@ public class Circle {
     }
 
     public void updateFromPoseAndPoint(Pose2D pose, Point2D other) {
-        Angle angleOfRadius = new Angle(pose.getAngleRadians() - Math.PI/2);
+        Angle angleOfRadius = new Angle(pose.getAngle().getRadians() - Math.PI/2);
         Line radius1 = new Line(pose.getPosition(), angleOfRadius);
 
         Line lineThroughPoints = new Line(pose.getPosition(), other);
 
-        if(Math.abs(lineThroughPoints.getSlope() - new Angle(pose.getAngleRadians()).tan()) < 2e-9) {
+        if(Math.abs(lineThroughPoints.getSlope() - pose.getAngle().tan()) < 2e-9) {
             this.radius = Double.POSITIVE_INFINITY;
         } else {
             Point2D midpoint = new Point2D((pose.getPosition().getX() + other.getX()) / 2, (pose.getPosition().getY() + other.getY()) / 2);
@@ -48,7 +50,11 @@ public class Circle {
         return center;
     }
 
-    public void print() {
-        System.out.println("radius=" + radius + ", " + "center=(" + center.getX() + ", " + center.getY() + ")");
+    public String toString() {
+        return "radius = " + radius * Path.TO_INCHES + ", " + "center = " + center.toString();
+    }
+
+    public String toStringMetric() {
+        return "radius = " + radius + ", " + "center = " + center.toStringMetric();
     }
 }

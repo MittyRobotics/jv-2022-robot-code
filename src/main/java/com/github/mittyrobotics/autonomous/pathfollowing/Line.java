@@ -42,7 +42,11 @@ public class Line {
         return new Line(other, -1./slope);
     }
 
-    public void print() {
-        System.out.println("m=" + slope + ", b=" + y_int);
+    public String toString() {
+        return "y = " + slope * Path.TO_INCHES + "x + " + y_int * Path.TO_INCHES;
+    }
+
+    public String toStringMetric() {
+        return "y = " + slope + "x + " + y_int;
     }
 }

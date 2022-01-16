@@ -17,7 +17,7 @@ public class RamsetePath extends Path {
 
     public DifferentialDriveState update(Pose2D robotPose, double dt, double end_threshold, double adjust_threshold, int newtonsSteps, double b, double Z, double trackwidth) {
         closestPointT = parametric.findClosestPointOnSpline(robotPose.getPosition(), 0.01, newtonsSteps, 10);
-        distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 11);
+        distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 17);
 
         desiredPose = parametric.getPose(closestPointT);
 

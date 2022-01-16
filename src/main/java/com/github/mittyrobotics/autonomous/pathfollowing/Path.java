@@ -40,7 +40,7 @@ public class Path {
 
     public DifferentialDriveState update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth) {
         closestPointT = parametric.findClosestPointOnSpline(robotPose.getPosition(), 0.01, newtonsSteps, 10);
-        distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 11);
+        distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 17);
 
         lookaheadPoint = getLookahead(distanceTraveled, lookahead);
 
@@ -165,7 +165,7 @@ public class Path {
 
     public Point2D getLookaheadFromRobotPose(Pose2D robotPose, double lookahead, int newtonsSteps) {
         closestPointT = parametric.findClosestPointOnSpline(robotPose.getPosition(), 0.01, newtonsSteps, 10);
-        distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 11);
+        distanceTraveled = parametric.getGaussianQuadratureLength(closestPointT, 17);
 
         return getLookahead(distanceTraveled, lookahead);
     }

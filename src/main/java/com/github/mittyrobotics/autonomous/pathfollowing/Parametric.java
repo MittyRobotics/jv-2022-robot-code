@@ -301,7 +301,7 @@ public class Parametric {
         //first row are weights, second row are points
         double[][] coefficients = getCoefficients(steps);
 
-        // we are trying to find integral of sqrt(x'(t)^2 + y'(t)^2) from 0 to 1
+        //we are trying to find integral of sqrt(x'(t)^2 + y'(t)^2) from 0 to 1
 
         //integral bound transformation from [0,1] to [-1, 1]
         double half = (end - start) / 2.0;
@@ -318,7 +318,6 @@ public class Parametric {
         return getGaussianQuadratureLength(0, end, steps);
     }
 
-    //use 11 or 17 steps, does not matter much because error is small unless the curvature is very high
     public double getGaussianQuadratureLength(int steps) {
         return getGaussianQuadratureLength(1.0, steps);
     }

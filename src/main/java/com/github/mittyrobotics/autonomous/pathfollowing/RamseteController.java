@@ -27,17 +27,9 @@ public class RamseteController {
         ey = t.sin() * (x - xd) + t.cos() * (yd - y);
         et = td.getAngleBetween(t);
 
-//        System.out.println("ex: " + ex + " | ey: " + ey + " | et: " + et);
-
-//        System.out.println("des velocity: " + desiredVelocity + " | des ang: " + desiredAngularVelocity);
-
         rvel = desiredVelocity * Math.cos(et) + k * ex;
         rAngVel = desiredAngularVelocity + k * et + b * desiredVelocity * sinc(et) * ey;
 
-
-//        if(desiredAngularVelocity == 0) {
-//            System.out.println("velocity: " + velocity + " | angularvelocity: " + angularVelocity);
-//        }
         DifferentialDriveState dds = new DifferentialDriveState(trackwidth);
 
         dds.updateFromLinearAndAngularVelocity(rvel, rAngVel, trackwidth);

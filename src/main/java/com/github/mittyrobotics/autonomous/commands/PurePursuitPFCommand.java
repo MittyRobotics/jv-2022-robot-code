@@ -46,8 +46,8 @@ public class PurePursuitPFCommand extends CommandBase {
         Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getRadians() + (reverse ? Math.PI : 0));
 
 
-//        update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth)
-        DifferentialDriveState dds = trajectory.update(robotPose, dt, LOOKAHEAD, end_threshold, adjust_threshold, 30, TRACKWIDTH);
+//      update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth)
+        DifferentialDriveState dds = trajectory.update(robotPose, dt, LOOKAHEAD, end_threshold, adjust_threshold, 50, TRACKWIDTH);
 
         if(reverse) {
             DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity() * Path.TO_INCHES, -dds.getLeftVelocity() * Path.TO_INCHES);

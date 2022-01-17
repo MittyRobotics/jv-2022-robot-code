@@ -245,52 +245,32 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
     /**
      * Moves the robot using tank drive in
      *
-     * @param leftVel left velocity in inches / sec
+     * @param leftVel left velocity in m / sec
      *
-     * @param rightVel right velocity in inches / sec
+     * @param rightVel right velocity in m / sec
      */
     public void tankVelocity(double leftVel, double rightVel) {
-//        setNeutralMode(NeutralMode.Coast);
-        double left;
-        double right;
-
         this.latestLeftVelSetpoint = leftVel;
         this.latestRightVelSetpoint = rightVel;
 
-        double MAX_SPEED = 12;
-
-        double measuredLeft = getLeftVelocity() * Path.TO_INCHES;
-        //0.06
-        //0.0
-        double kA = 0.0;
-        double FFLeft = DriveConstants.DRIVE_FALCON_FF * leftVel + kA * ((measuredLeft - leftLastMeasured) / .02);
+        double measuredLeft = getLeftVelocity();
+        double FFLeft = DriveConstants.DRIVE_FALCON_FF * leftVel + DriveConstants.DRIVE_FALCON_D * ((measuredLeft - leftLastMeasured) / .02);
         leftLastMeasured = measuredLeft;
+
         double errorLeft = leftVel - measuredLeft;
-        //0.01
         double FBLeft = DriveConstants.DRIVE_FALCON_P * errorLeft;
-        SmartDashboard.putNumber("FBLeft", FBLeft);
-        SmartDashboard.putNumber("ErrorLeft", errorLeft);
-        left = (FFLeft + FBLeft);
-        left = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, left));
+        double left = (FFLeft + FBLeft);
+        left = MathUtil.clamp(left, -1, 1);
 
-        double measuredRight = getRightVelocity() * Path.TO_INCHES;
 
-        double FFRight = DriveConstants.DRIVE_FALCON_FF * rightVel + kA * ((measuredRight - rightLastMeasured) / .02);
 
+        double measuredRight = getRightVelocity();
+        double FFRight = DriveConstants.DRIVE_FALCON_FF * rightVel + DriveConstants.DRIVE_FALCON_D * ((measuredRight - rightLastMeasured) / .02);
         rightLastMeasured = measuredRight;
 
         double errorRight = rightVel - measuredRight;
-
-        double FBRight = DriveConstants.DRIVE_FALCON_P * errorRight;
-
-        right = (FFRight + FBRight);
-
-        right = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, right));
-
-        left = left / 12;
-        right = right / 12;
-
-//        System.out.println(left + " | " + right);
+        double right = (FFRight + DriveConstants.DRIVE_FALCON_P * errorRight);
+        right = MathUtil.clamp(right, -1, 1);
 
         overrideSetMotor(left, right);
     }

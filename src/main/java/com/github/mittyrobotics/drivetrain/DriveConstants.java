@@ -56,7 +56,10 @@ public class DriveConstants {
     public static final boolean LEFT_ENCODER_INVERSION = true;
     public static final boolean RIGHT_ENCODER_INVERSION = true;
 
-    public static final double DRIVE_FALCON_FF = (.4*12.0)/122.1;
+    public static final double DRIVE_FALCON_MAX_SPEED = 122.1 * Path.TO_METERS; //122.1 in/s
+    public static final double DRIVE_FALCON_FF_RATIO = 0.4;
+    public static final double DRIVE_FALCON_FF = DRIVE_FALCON_FF_RATIO/DRIVE_FALCON_MAX_SPEED;
     public static final double DRIVE_FALCON_P = 0.05;
+    public static final double DRIVE_FALCON_D = 0;
 
 }

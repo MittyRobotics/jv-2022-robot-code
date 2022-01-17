@@ -51,9 +51,9 @@ public class PurePursuitPFCommand extends CommandBase {
         DifferentialDriveState dds = trajectory.update(robotPose, dt, LOOKAHEAD, end_threshold, adjust_threshold, 50, TRACKWIDTH);
 
         if(reverse) {
-            DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity() * Path.TO_INCHES, -dds.getLeftVelocity() * Path.TO_INCHES);
+            DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity(), -dds.getLeftVelocity());
         } else {
-            DrivetrainSubsystem.getInstance().tankVelocity(dds.getLeftVelocity() * Path.TO_INCHES, dds.getRightVelocity() * Path.TO_INCHES);
+            DrivetrainSubsystem.getInstance().tankVelocity(dds.getLeftVelocity(), dds.getRightVelocity());
         }
 
         lastTime = Timer.getFPGATimestamp();

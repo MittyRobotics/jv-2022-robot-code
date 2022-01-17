@@ -51,9 +51,9 @@ public class RamsetePFCommand extends CommandBase {
         DifferentialDriveState dds = trajectory.update(robotPose, dt, end_threshold, adjust_threshold, 50, b, Z, TRACKWIDTH);
 
         if(reverse) {
-            DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity() * Path.TO_INCHES, -dds.getLeftVelocity() * Path.TO_INCHES);
+            DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity(), -dds.getLeftVelocity());
         } else {
-            DrivetrainSubsystem.getInstance().tankVelocity(dds.getLeftVelocity() * Path.TO_INCHES, dds.getRightVelocity() * Path.TO_INCHES);
+            DrivetrainSubsystem.getInstance().tankVelocity(dds.getLeftVelocity(), dds.getRightVelocity());
         }
 
         lastTime = Timer.getFPGATimestamp();

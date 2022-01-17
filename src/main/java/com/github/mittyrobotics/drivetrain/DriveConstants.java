@@ -41,8 +41,7 @@ public class DriveConstants {
     public static final double FINAL_MULTIPLIER = 0.25;
 
     // drive settings
-    public static final double TICKS_PER_INCH = 15359.0/24.0;
-    public static final double TICKS_PER_METER = Path.TO_INCHES * 15359.0/24.0;
+    public static final double TICKS_PER_METER = 15359.0 / (24.0 * Path.TO_METERS);
 
     public static final int LEFT_FALCON_1 = 10;
     public static final int LEFT_FALCON_2 = 11;

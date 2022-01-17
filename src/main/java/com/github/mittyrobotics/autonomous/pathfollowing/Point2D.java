@@ -29,8 +29,16 @@ public class Point2D {
         return Math.sqrt((other.getX() - x) * (other.getX() - x) + (other.getY() - y) * (other.getY() - y));
     }
 
+    public Point2D multiply(double m) {
+        return new Point2D(x * m, y * m);
+    }
+
     public Point2D minus(Point2D other) {
         return new Point2D(x - other.x, y - other.y);
+    }
+
+    public Point2D add(Point2D other) {
+        return new Point2D(this.x + other.getX(), this.y + other.getY());
     }
 
     public double magnitude() {

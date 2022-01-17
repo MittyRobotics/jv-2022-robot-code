@@ -12,7 +12,7 @@ public class Angle {
     }
 
     public Angle(double radians) {
-        this.radians = radians;
+        this.radians = standardize(radians);
     }
 
     public Angle(Point2D point) {
@@ -24,6 +24,10 @@ public class Angle {
             return (Math.sin(radians) > 0 ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY);
         }
         return Math.tan(radians);
+    }
+
+    public void add(double radians) {
+        this.radians = standardize(this.radians + radians);
     }
 
     public double sin() {
@@ -50,4 +54,10 @@ public class Angle {
         double phi = Math.abs(this.radians - other.radians) % (2*Math.PI);
         return phi > Math.PI ? 2*Math.PI - phi : phi;
     }
+
+    public static double standardize(double radians) {
+        if(radians > 0) return radians - (2*Math.PI) * (int)(radians / (2*Math.PI));
+        else return radians + (2*Math.PI) * ((int)(radians / (2*Math.PI))+1);
+    }
+
 }

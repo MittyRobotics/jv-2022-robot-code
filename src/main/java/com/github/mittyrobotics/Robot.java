@@ -26,8 +26,7 @@ public class Robot extends TimedRobot {
         Gyro.getInstance().reset();
 
         Odometry.getInstance().zeroEncoders(DrivetrainSubsystem.getInstance().getLeftPosition(), DrivetrainSubsystem.getInstance().getRightPosition());
-        Odometry.getInstance().zeroHeading(Gyro.getInstance().getAngle360());
-        Odometry.getInstance().zeroPosition();
+        Odometry.getInstance().setPose(new Pose2D(0, 0, 0), Gyro.getInstance().getAngleRadians());
     }
 
     @Override
@@ -36,7 +35,7 @@ public class Robot extends TimedRobot {
         SubsystemManager.getInstance().updateDashboard();
         SmartDashboard.updateValues();
 
-        Odometry.getInstance().update(DrivetrainSubsystem.getInstance().getLeftPosition() * Path.TO_METERS, DrivetrainSubsystem.getInstance().getRightPosition() * Path.TO_METERS, Gyro.getInstance().getAngle360());
+        Odometry.getInstance().update(DrivetrainSubsystem.getInstance().getLeftPosition() * Path.TO_METERS, DrivetrainSubsystem.getInstance().getRightPosition() * Path.TO_METERS, Gyro.getInstance().getAngleRadians());
     }
 
     @Override
@@ -44,8 +43,7 @@ public class Robot extends TimedRobot {
         DrivetrainSubsystem.getInstance().resetEncoder();
         Gyro.getInstance().reset();
         Odometry.getInstance().zeroEncoders(DrivetrainSubsystem.getInstance().getLeftPosition(), DrivetrainSubsystem.getInstance().getRightPosition());
-        Odometry.getInstance().zeroHeading(Gyro.getInstance().getAngle360());
-        Odometry.getInstance().zeroPosition();
+        Odometry.getInstance().setPose(new Pose2D(0, 0, 0), Gyro.getInstance().getAngleRadians());
 
         QuinticHermiteSpline spline = new QuinticHermiteSpline(
                 new Pose2D(0, 0, 0),

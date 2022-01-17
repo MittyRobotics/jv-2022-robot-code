@@ -43,7 +43,8 @@ public class PurePursuitPFCommand extends CommandBase {
         double dt = Timer.getFPGATimestamp() - lastTime;
 
 
-        Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getRadians() + (reverse ? Math.PI : 0));
+        Pose2D robotPose = Odometry.getInstance().getRobotPose();
+        robotPose.getAngle().add((reverse ? Math.PI : 0));
 
 
 //      update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth)

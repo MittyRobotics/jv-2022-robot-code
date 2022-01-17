@@ -73,21 +73,21 @@ public class Gyro extends ADXRS450_Gyro implements IHardware {
      * @return {@link Angle} angle
      */
     public Angle getRotation() {
-        return new Angle(getAngle360() * Math.PI / 180);
+        return new Angle(getAngleRadians());
     }
 
     /**
-     * Gets the gyro angle between 0-360
+     * Gets the gyro angle between 0-2pi
      *
-     * @return angle between 0-360
+     * @return angle between 0-2pi
      */
-    public double getAngle360() {
+    public double getAngleRadians() {
         double angle = getAngle();
         angle %= 360;
         if (angle < 0) {
             angle += 360;
         }
-        return angle;
+        return angle * Math.PI/180;
     }
 
     /**

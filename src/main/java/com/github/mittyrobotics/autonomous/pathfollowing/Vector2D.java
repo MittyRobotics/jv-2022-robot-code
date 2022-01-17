@@ -1,16 +1,10 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class Vector2D {
-    private Angle angle;
-    private double magnitude;
-
     public double x;
     public double y;
 
     public Vector2D(Angle angle, double magnitude) {
-        this.angle = angle;
-        this.magnitude = magnitude;
-
         this.x = magnitude * angle.cos();
         this.y = magnitude * angle.sin();
     }
@@ -18,9 +12,6 @@ public class Vector2D {
     public Vector2D(double x, double y) {
         this.x = x;
         this.y = y;
-
-        this.angle = new Angle(Math.atan2(y, x));
-        this.magnitude = Math.sqrt(x * x + y * y);
     }
 
     public Vector2D() {
@@ -32,11 +23,7 @@ public class Vector2D {
     }
 
     public double getMagnitude() {
-        return magnitude;
-    }
-
-    public Angle getAngle() {
-        return angle;
+        return Math.sqrt(x * x + y * y);
     }
 
     public double getX() {

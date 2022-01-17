@@ -26,6 +26,7 @@ package com.github.mittyrobotics.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.github.mittyrobotics.autonomous.pathfollowing.Path;
 import com.github.mittyrobotics.util.interfaces.IDualMotorSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -120,12 +121,12 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
      */
     @Override
     public void updateDashboard() {
-        SmartDashboard.putNumber("Drive Velocity Left", getLeftVelocity());
-        SmartDashboard.putNumber("Drive Velocity Right", getRightVelocity());
+        SmartDashboard.putNumber("Drive Velocity Left", getLeftVelocity() * Path.TO_INCHES);
+        SmartDashboard.putNumber("Drive Velocity Right", getRightVelocity() * Path.TO_INCHES);
         SmartDashboard.putNumber("Drive Velocity Left Setpoint", getLeftVelSetpoint());
         SmartDashboard.putNumber("Drive Velocity Right Setpoint", getRightVelSetpoint());
-        SmartDashboard.putNumber("Drive Position Left", getLeftPosition());
-        SmartDashboard.putNumber("Drive Position Right", getRightPosition());
+        SmartDashboard.putNumber("Drive Position Left", getLeftPosition() * Path.TO_INCHES);
+        SmartDashboard.putNumber("Drive Position Right", getRightPosition() * Path.TO_INCHES);
     }
 
     public void setMode(NeutralMode mode) {
@@ -181,7 +182,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
      */
     @Override
     public double getLeftPosition() {
-        return leftDrive[0].getSelectedSensorPosition() / DriveConstants.TICKS_PER_INCH;
+        return leftDrive[0].getSelectedSensorPosition() / DriveConstants.TICKS_PER_METER;
     }
 
     /**
@@ -191,7 +192,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
      */
     @Override
     public double getRightPosition() {
-        return rightDrive[0].getSelectedSensorPosition() / DriveConstants.TICKS_PER_INCH;
+        return rightDrive[0].getSelectedSensorPosition() / DriveConstants.TICKS_PER_METER;
     }
 
     /**
@@ -201,7 +202,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
      */
     @Override
     public double getLeftVelocity() {
-        return ((leftDrive[0].getSelectedSensorVelocity() / DriveConstants.TICKS_PER_INCH) * 10);
+        return ((leftDrive[0].getSelectedSensorVelocity() / DriveConstants.TICKS_PER_METER) * 10);
     }
 
     /**
@@ -211,7 +212,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
      */
     @Override
     public double getRightVelocity() {
-        return ((rightDrive[0].getSelectedSensorVelocity() / DriveConstants.TICKS_PER_INCH) * 10);
+        return ((rightDrive[0].getSelectedSensorVelocity() / DriveConstants.TICKS_PER_METER) * 10);
     }
 
     /**
@@ -258,7 +259,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
 
         double MAX_SPEED = 12;
 
-        double measuredLeft = getLeftVelocity();
+        double measuredLeft = getLeftVelocity() * Path.TO_INCHES;
         //0.06
         //0.0
         double kA = 0.0;
@@ -272,7 +273,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
         left = (FFLeft + FBLeft);
         left = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, left));
 
-        double measuredRight = getRightVelocity();
+        double measuredRight = getRightVelocity() * Path.TO_INCHES;
 
         double FFRight = DriveConstants.DRIVE_FALCON_FF * rightVel + kA * ((measuredRight - rightLastMeasured) / .02);
 

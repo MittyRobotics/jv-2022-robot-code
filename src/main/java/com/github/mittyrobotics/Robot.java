@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
         SubsystemManager.getInstance().updateDashboard();
         SmartDashboard.updateValues();
 
-        Odometry.getInstance().update(DrivetrainSubsystem.getInstance().getLeftPosition() * Path.TO_METERS, DrivetrainSubsystem.getInstance().getRightPosition() * Path.TO_METERS, Gyro.getInstance().getAngleRadians());
+        Odometry.getInstance().update(DrivetrainSubsystem.getInstance().getLeftPosition(), DrivetrainSubsystem.getInstance().getRightPosition(), Gyro.getInstance().getAngleRadians());
     }
 
     @Override

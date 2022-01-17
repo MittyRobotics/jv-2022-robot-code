@@ -2,17 +2,13 @@ package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class RamseteController {
 
-    public static double ex, ey, et, k, vel, angVel, rvel, rAngVel;
+    public static double ex, ey, et, k, rvel, rAngVel;
     public static Angle t, td;
 
     public static DifferentialDriveState ramsete(Pose2D curPose, Pose2D desiredPose, double desiredVelocity, double desiredAngularVelocity, double b, double Z, double trackwidth) {
         //https://file.tavsys.net/control/controls-engineering-in-frc.pdf
 
         //b > 0, 0 < Z < 1, larger b -> faster convergence, larger Z -> more dampening
-
-        vel = desiredVelocity;
-        angVel = desiredAngularVelocity;
-
 
         k = 2*Z*Math.sqrt(desiredAngularVelocity*desiredAngularVelocity + b * desiredVelocity * desiredVelocity);
 

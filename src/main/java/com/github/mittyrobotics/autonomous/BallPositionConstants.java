@@ -7,7 +7,7 @@ public class BallPositionConstants {
     //All balls labeled clockwise, starting from the blue ball at the acute corner of red alliance
     //reference: https://cad.onshape.com/documents/e491d0b03d0534894c2f50ee/w/746eeb7ee6910a6cbe50eb65/e/6f25d3aee97d55ef18af9901
 
-    //desmos field: https://www.desmos.com/calculator/ax1fbsga2d
+    //desmos field: https://www.desmos.com/calculator/xksceznwio
 
     //RED ALLIANCE
     public final Point2D RED_1 = new Point2D(25.910, 150.790);

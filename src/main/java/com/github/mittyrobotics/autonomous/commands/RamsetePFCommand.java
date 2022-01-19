@@ -66,7 +66,8 @@ public class RamsetePFCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        Pose2D robotPose = new Pose2D(Odometry.getInstance().getRobotVector().getX(), Odometry.getInstance().getRobotVector().getY(), Odometry.getInstance().getRobotRotation().getRadians() + (reverse ? Math.PI : 0));
+        Pose2D robotPose = Odometry.getInstance().getRobotPose();
+        robotPose.getAngle().add((reverse ? Math.PI : 0));
 
         return trajectory.isFinished(robotPose, end_threshold);
     }

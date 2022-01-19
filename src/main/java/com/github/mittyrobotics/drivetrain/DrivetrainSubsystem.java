@@ -294,7 +294,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
     }
 
     /**
-     * Sets each of the {@link WPI_TalonFX}s to the inputted neutral mdoe
+     * Sets each of the {@link WPI_TalonFX}s to the inputted neutral mode
      *
      * @param neutralMode the neutral mode to set the talons to
      */

@@ -1,18 +1,39 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class Circle {
+    /**
+     * Radius in meters
+     */
     private double radius;
+
+    /**
+     * Center as a {@link Point2D} in meters
+     */
     private Point2D center;
 
+    /**
+     * Creates a circle with radius 0 and center (0, 0)
+     */
     public Circle() {
         this(0, new Point2D());
     }
 
+    /**
+     * Creates a new circle
+     * @param radius radius in meters
+     * @param center {@link Point2D} representing center
+     */
     public Circle(double radius, Point2D center) {
         this.radius = radius;
         this.center = center;
     }
 
+    /**
+     * Returns the orientation between a {@link Pose2D} and a {@link Point2D}
+     * @param pose {@link Pose2D} representing starting position
+     * @param point3 {@link Point2D} point to get the orientation of
+     * @return 0 means straight line, 1 means point3 is to the right of pose, 2 means point3 is to the left of pose
+     */
     public int orientationOfPoseAndPoint(Pose2D pose, Point2D point3) {
         Point2D point1 = pose.getPosition();
         Point2D point2 = new Point2D(point1.getX() + pose.getAngle().cos(), point1.getY() + pose.getAngle().sin());
@@ -25,6 +46,11 @@ public class Circle {
         return (test > 0) ? 1 : 2;
     }
 
+    /**
+     * Updates radius and center based on a tangent {@link Pose2D} and another {@link Point2D} on the circle
+     * @param pose tangent {@link Pose2D}
+     * @param other another {@link Point2D} on the circle
+     */
     public void updateFromPoseAndPoint(Pose2D pose, Point2D other) {
         Angle angleOfRadius = new Angle(pose.getAngle().getRadians() - Math.PI/2);
         Line radius1 = new Line(pose.getPosition(), angleOfRadius);
@@ -42,18 +68,34 @@ public class Circle {
         }
     }
 
+    /**
+     * Returns radius in meters
+     * @return radius in meters
+     */
     public double getRadius() {
         return radius;
     }
 
+    /**
+     * Returns center as a {@link Point2D} in meters
+     * @return center as a {@link Point2D} in meters
+     */
     public Point2D getCenter() {
         return center;
     }
 
+    /**
+     * Returns string representation of the {@link Circle} in inches
+     * @return string representation of the {@link Circle} in inches
+     */
     public String toString() {
         return "radius = " + radius * Path.TO_INCHES + ", " + "center = " + center.toString();
     }
 
+    /**
+     * Returns string representation of the {@link Circle} in meters
+     * @return string representation of the {@link Circle} in meters
+     */
     public String toStringMetric() {
         return "radius = " + radius + ", " + "center = " + center.toStringMetric();
     }

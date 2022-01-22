@@ -1,25 +1,25 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class DifferentialDriveState {
-    private double linearVelocity, angularVelocity, leftVelocity, rightVelocity, radius, trackWidth;
+    /**
+     * Variables to store current velocity state
+     */
+    private double linearVelocity, angularVelocity, leftVelocity, rightVelocity, radius;
 
-    public DifferentialDriveState(double trackWidth) {
-        this.trackWidth = trackWidth;
-    }
+    /**
+     * Create a {@link DifferentialDriveState} with all 0 values
+     */
+    public DifferentialDriveState() {}
 
-    public DifferentialDriveState(double linearVelocity, double angularVelocity, double leftVelocity, double rightVelocity, double radius, double trackWidth) {
-        this.linearVelocity = linearVelocity;
-        this.angularVelocity = angularVelocity;
-        this.leftVelocity = leftVelocity;
-        this.rightVelocity = rightVelocity;
-        this.radius = radius;
-        this.trackWidth = trackWidth;
-    }
-
+    /**
+     * Updates the {@link DifferentialDriveState} based on a linear velocity, angular velocity, and track width
+     * @param linearVelocity linear velocity in meters/second
+     * @param angularVelocity angular velocity in in meters/second
+     * @param trackWidth track width in meters
+     */
     public void updateFromLinearAndAngularVelocity(double linearVelocity, double angularVelocity, double trackWidth) {
         this.linearVelocity = linearVelocity;
         this.angularVelocity = angularVelocity;
-        this.trackWidth = trackWidth;
 
         if(Math.abs(angularVelocity) < 2e-9) {
             this.radius = Double.POSITIVE_INFINITY;
@@ -32,6 +32,13 @@ public class DifferentialDriveState {
         }
     }
 
+    /**
+     * Updates the {@link DifferentialDriveState} based on a linear velocity, radius, and track width
+     * @param linearVelocity linear velocity in meters/second
+     * @param radius radius of differential circle in meters
+     * @param turnRight true if circle is turning right, false otherwise
+     * @param trackWidth track width in meters
+     */
     public void updateFromLinearVelocityAndRadius(double linearVelocity, double radius, boolean turnRight, double trackWidth) {
         if(Double.isInfinite(radius)) {
             this.angularVelocity = 0;
@@ -42,26 +49,34 @@ public class DifferentialDriveState {
         updateFromLinearAndAngularVelocity(linearVelocity, this.angularVelocity, trackWidth);
     }
 
+    /**
+     * Return the left side velocity
+     * @return left side velocity in meters/second
+     */
     public double getLeftVelocity() {
         return leftVelocity;
     }
 
+    /**
+     * Return the right side velocity
+     * @return right side velocity in meters/second
+     */
     public double getRightVelocity() {
         return rightVelocity;
     }
 
-    public double getLinearVelocity() {
-        return linearVelocity;
-    }
-
-    public double getAngularVelocity() {
-        return angularVelocity;
-    }
-
+    /**
+     * Returns string representation of left and right velocities in inches/second
+     * @return string representation of left and right velocities in inches/second
+     */
     public String toString() {
         return "left velocity = " + leftVelocity * Path.TO_INCHES + ", right velocity = " + rightVelocity * Path.TO_INCHES;
     }
 
+    /**
+     * Returns string representation of left and right velocities in meters/second
+     * @return string representation of left and right velocities in meters/second
+     */
     public String toStringMetric() {
         return "left velocity = " + leftVelocity + ", right velocity = " + rightVelocity;
     }

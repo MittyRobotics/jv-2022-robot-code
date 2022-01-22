@@ -26,7 +26,7 @@ public class RamseteController {
         rvel = desiredVelocity * Math.cos(et) + k * ex;
         rAngVel = desiredAngularVelocity + k * et + b * desiredVelocity * sinc(et) * ey;
 
-        DifferentialDriveState dds = new DifferentialDriveState(trackwidth);
+        DifferentialDriveState dds = new DifferentialDriveState();
 
         dds.updateFromLinearAndAngularVelocity(rvel, rAngVel, trackwidth);
         return dds;

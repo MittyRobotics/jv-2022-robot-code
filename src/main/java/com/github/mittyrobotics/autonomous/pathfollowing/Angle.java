@@ -15,9 +15,7 @@ public class Angle {
 
     /**
      * Creates angle equal to angle from origin of a vector (x, y)
-     *
      * @param x x value of vector
-     *
      * @param y y value of vector
      */
     public Angle(double x, double y) {
@@ -26,7 +24,6 @@ public class Angle {
 
     /**
      * Creates angle of rad radians
-     *
      * @param rad value of angle in radians
      */
     public Angle(double rad) {
@@ -35,7 +32,6 @@ public class Angle {
 
     /**
      * Creates angle equal to angle from origin of a {@link Point2D}
-     *
      * @param point {@link Point2D} to get angle from
      */
     public Angle(Point2D point) {
@@ -45,7 +41,6 @@ public class Angle {
 
     /**
      * Returns tangent of the current angle, positive or negative infinity if {@link Angle}.cos() equals 0
-     *
      * @return tangent of the current angle, positive or negative infinity if {@link Angle}.cos() equals 0
      */
     public double tan() {
@@ -57,7 +52,6 @@ public class Angle {
 
     /**
      * Adds radians to the {@link Angle}
-     *
      * @param radians radians to add
      */
     public void add(double radians) {
@@ -66,7 +60,6 @@ public class Angle {
 
     /**
      * Returns sine of the current angle
-     *
      * @return sine of the current angle
      */
     public double sin() {
@@ -75,7 +68,6 @@ public class Angle {
 
     /**
      * Returns cosine of the current angle
-     *
      * @return cosine of the current angle
      */
     public double cos() {
@@ -84,7 +76,6 @@ public class Angle {
 
     /**
      * Returns angle in radians
-     *
      * @return angle in radians
      */
     public double getRadians() {
@@ -93,7 +84,6 @@ public class Angle {
 
     /**
      * Returns string representation of the {@link Angle} in degrees
-     *
      * @return string representation of the {@link Angle} in degrees
      */
     public String toString() {
@@ -102,7 +92,6 @@ public class Angle {
 
     /**
      * Returns string representation of the {@link Angle} in radians
-     *
      * @return string representation of the {@link Angle} in radians
      */
     public String toStringMetric() {
@@ -111,9 +100,7 @@ public class Angle {
 
     /**
      * Returns angle in radians between two {@link Angle}s
-     *
      * @param other {@link Angle} to get the angle between
-     *
      * @return string representation of the {@link Angle} in degrees
      */
     public double getAngleBetween(Angle other) {
@@ -123,9 +110,7 @@ public class Angle {
 
     /**
      * Standardizes an angle to between [0, 2π] radians
-     *
      * @param radians radians to standardize
-     *
      * @return radians standardized to between [0, 2π]
      */
     public static double standardize(double radians) {

@@ -1,29 +1,63 @@
 package com.github.mittyrobotics.autonomous.pathfollowing;
 
 public class Parametric {
+    /**
+     * Length of the parametric
+     */
     protected double length;
 
+    /**
+     * Returns the {@link Point2D} at t
+     * @param t t to get associated {@link Point2D}
+     * @return {@link Point2D} at t
+     */
     public Point2D getPoint(double t) {
         return new Point2D();
     }
 
+    /**
+     * Returns the {@link Angle} at t
+     * @param t t to get associated {@link Angle}
+     * @return {@link Angle} at t
+     */
     public Angle getAngle(double t) {
         return new Angle();
     }
 
+    /**
+     * Returns the total length of the parametric
+     * @return the total length of the parametric
+     */
     public double getLength() {
         return length;
     }
 
+    /**
+     * Returns the {@link Pose2D} at t
+     * @param t t to get associated {@link Pose2D}
+     * @return {@link Pose2D} at t
+     */
     public Pose2D getPose(double t) {
         return new Pose2D();
     }
 
+    /**
+     * Returns the nth derivative as a {@link Point2D} at t
+     * @param t t to get associated nth derivative
+     * @param n degree of the derivative
+     * @return the nth derivative as a {@link Point2D} at t
+     */
     public Point2D getDerivative(double t, int n) {
         return new Point2D();
     }
 
+    /**
+     * Returns an array of the nth Legendre-Gauss coefficients
+     * @param n degree of the coefficients
+     * @return double array of the nth Legendre-Gauss coefficients
+     */
     public double[][] getCoefficients(int n) {
+        //Source: https://pomax.github.io/bezierinfo/legendre-gauss.html
         switch (n) {
             case 2:
                 return new double[][] {
@@ -295,9 +329,14 @@ public class Parametric {
         return new double[][]{};
     }
 
-
+    /**
+     *
+     * @param start
+     * @param end
+     * @param steps
+     * @return
+     */
     public double getGaussianQuadratureLength(double start, double end, int steps) {
-        //https://pomax.github.io/bezierinfo/legendre-gauss.html
         //first row are weights, second row are points
         double[][] coefficients = getCoefficients(steps);
 

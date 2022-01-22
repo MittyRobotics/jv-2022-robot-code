@@ -52,7 +52,7 @@ public class Parametric {
     }
 
     /**
-     * Returns an array of the nth Legendre-Gauss coefficients
+     * Returns an array of the nth Legendre-Gauss coefficients (first column is weights, second column is points)
      * @param n degree of the coefficients
      * @return double array of the nth Legendre-Gauss coefficients
      */
@@ -330,25 +330,24 @@ public class Parametric {
     }
 
     /**
-     *
+     * Get the Gaussian quadrature length
      * @param start
      * @param end
      * @param steps
      * @return
      */
     public double getGaussianQuadratureLength(double start, double end, int steps) {
-        //first row are weights, second row are points
         double[][] coefficients = getCoefficients(steps);
 
-        //we are trying to find integral of sqrt(x'(t)^2 + y'(t)^2) from 0 to 1
+        //we are trying to find integral of sqrt(x'(t)^2 + y'(t)^2) from start to end
 
         //integral bound transformation from [0,1] to [-1, 1]
         double half = (end - start) / 2.0;
         double avg = (start + end) / 2.0;
         double length = 0;
-        for (int i = 0; i < coefficients.length; i++) {
+        for (double[] coefficient : coefficients) {
             //sqrt(x'(t)^2 + y'(t)^2)
-            length += getDerivative(avg + half * coefficients[i][1], 1).magnitude() * coefficients[i][0];
+            length += getDerivative(avg + half * coefficient[1], 1).magnitude() * coefficient[0];
         }
         return length * half;
     }

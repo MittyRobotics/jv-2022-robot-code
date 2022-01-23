@@ -522,6 +522,24 @@ public class Parametric {
     }
 
     /**
+     * Returns a {@link Vector2D} with the maximum x and y coordinates on the path
+     * @param steps number of points to sample
+     * @return a {@link Vector2D} with the maximum x and y coordinates on the path
+     */
+    public Vector2D getAbsoluteMaxCoordinates(double steps) {
+        Vector2D max = new Vector2D();
+
+        double stepsize = 1/steps;
+        for(double t = 0; t <= 1; t += stepsize) {
+            Point2D point = getPoint(t);
+            max.x = Math.max(max.x, Math.abs(point.getX()));
+            max.y = Math.max(max.y, Math.abs(point.getY()));
+        }
+
+        return max;
+    }
+
+    /**
      * Return a new {@link Parametric} path to this parametric's setpoint from a position, velocity, and acceleration
      * @param newPos {@Pose2D} to start from
      * @param newVel {@Vector2D} velocity to start from

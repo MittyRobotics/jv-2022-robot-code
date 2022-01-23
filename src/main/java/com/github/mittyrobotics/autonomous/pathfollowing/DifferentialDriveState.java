@@ -69,6 +69,22 @@ public class DifferentialDriveState {
     }
 
     /**
+     * Return the linear velocity
+     * @return the linear velocity in meters/second
+     */
+    public double getLinearVelocity() {
+        return linearVelocity;
+    }
+
+    /**
+     * Return the angular velocity
+     * @return the angular velocity in meters/second
+     */
+    public double getAngularVelocity() {
+        return angularVelocity;
+    }
+
+    /**
      * Returns string representation of left and right velocities in inches/second
      * @return string representation of left and right velocities in inches/second
      */

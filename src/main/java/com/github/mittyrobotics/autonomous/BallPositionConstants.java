@@ -1,6 +1,6 @@
 package com.github.mittyrobotics.autonomous;
 
-import com.github.mittyrobotics.autonomous.pathfollowing.Path;
+import com.github.mittyrobotics.autonomous.pathfollowing.PurePursuitPath;
 import com.github.mittyrobotics.autonomous.pathfollowing.Point2D;
 
 public class BallPositionConstants {
@@ -40,28 +40,28 @@ public class BallPositionConstants {
 
 
     //RED ALLIANCE METRIC
-    public final Point2D RED_1_METRIC = RED_1.multiply(Path.TO_METERS);
-    public final Point2D RED_2_METRIC = RED_2.multiply(Path.TO_METERS);
-    public final Point2D RED_TERMINAL_METRIC = RED_TERMINAL.multiply(Path.TO_METERS);
+    public final Point2D RED_1_METRIC = RED_1.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D RED_2_METRIC = RED_2.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D RED_TERMINAL_METRIC = RED_TERMINAL.multiply(PurePursuitPath.TO_METERS);
 
-    public final Point2D RED_3_METRIC = RED_3.multiply(Path.TO_METERS);
+    public final Point2D RED_3_METRIC = RED_3.multiply(PurePursuitPath.TO_METERS);
 
-    public final Point2D BLUE_1_METRIC = BLUE_1.multiply(Path.TO_METERS);
-    public final Point2D BLUE_2_METRIC = BLUE_2.multiply(Path.TO_METERS);
-    public final Point2D BLUE_3_METRIC = BLUE_3.multiply(Path.TO_METERS);
+    public final Point2D BLUE_1_METRIC = BLUE_1.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D BLUE_2_METRIC = BLUE_2.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D BLUE_3_METRIC = BLUE_3.multiply(PurePursuitPath.TO_METERS);
 
 
 
     //BLUE ALLIANCE METRIC
-    public final Point2D BLUE_4_METRIC = BLUE_4.multiply(Path.TO_METERS);
-    public final Point2D BLUE_5_METRIC = BLUE_5.multiply(Path.TO_METERS);
-    public final Point2D BLUE_TERMINAL_METRIC = BLUE_TERMINAL.multiply(Path.TO_METERS);
+    public final Point2D BLUE_4_METRIC = BLUE_4.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D BLUE_5_METRIC = BLUE_5.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D BLUE_TERMINAL_METRIC = BLUE_TERMINAL.multiply(PurePursuitPath.TO_METERS);
 
-    public final Point2D BLUE_6_METRIC = BLUE_6.multiply(Path.TO_METERS);
+    public final Point2D BLUE_6_METRIC = BLUE_6.multiply(PurePursuitPath.TO_METERS);
 
 
 
-    public final Point2D RED_4_METRIC = RED_4.multiply(Path.TO_METERS);
-    public final Point2D RED_5_METRIC = RED_5.multiply(Path.TO_METERS);
-    public final Point2D RED_6_METRIC = RED_6.multiply(Path.TO_METERS);
+    public final Point2D RED_4_METRIC = RED_4.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D RED_5_METRIC = RED_5.multiply(PurePursuitPath.TO_METERS);
+    public final Point2D RED_6_METRIC = RED_6.multiply(PurePursuitPath.TO_METERS);
 }

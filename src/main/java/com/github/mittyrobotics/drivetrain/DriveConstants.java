@@ -24,7 +24,7 @@
 
 package com.github.mittyrobotics.drivetrain;
 
-import com.github.mittyrobotics.autonomous.pathfollowing.Path;
+import com.github.mittyrobotics.autonomous.pathfollowing.PurePursuitPath;
 
 /**
  * Constants for the {@link DrivetrainSubsystem}
@@ -41,7 +41,7 @@ public class DriveConstants {
     public static final double FINAL_MULTIPLIER = 0.25;
 
     // drive settings
-    public static final double TICKS_PER_METER = 15359.0 / (24.0 * Path.TO_METERS);
+    public static final double TICKS_PER_METER = 15359.0 / (24.0 * PurePursuitPath.TO_METERS);
 
     public static final int LEFT_FALCON_1 = 10;
     public static final int LEFT_FALCON_2 = 11;
@@ -55,7 +55,7 @@ public class DriveConstants {
     public static final boolean LEFT_ENCODER_INVERSION = true;
     public static final boolean RIGHT_ENCODER_INVERSION = true;
 
-    public static final double DRIVE_FALCON_MAX_SPEED = 122.1 * Path.TO_METERS; //122.1 in/s
+    public static final double DRIVE_FALCON_MAX_SPEED = 122.1 * PurePursuitPath.TO_METERS; //122.1 in/s
     public static final double DRIVE_FALCON_FF_RATIO = 0.4;
     public static final double DRIVE_FALCON_FF = DRIVE_FALCON_FF_RATIO/DRIVE_FALCON_MAX_SPEED;
     public static final double DRIVE_FALCON_P = 0.05;

@@ -68,7 +68,7 @@ public class Line {
      * @return a string representation of the line as y=mx+b in inches
      */
     public String toString() {
-        return "y = " + slope + "x + " + y_int * Path.TO_INCHES;
+        return "y = " + slope + "x + " + y_int * PurePursuitPath.TO_INCHES;
     }
 
     /**

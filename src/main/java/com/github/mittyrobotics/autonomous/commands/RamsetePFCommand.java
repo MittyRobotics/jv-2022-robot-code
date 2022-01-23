@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.github.mittyrobotics.autonomous.AutonomousConstants;
 import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.autonomous.pathfollowing.DifferentialDriveState;
-import com.github.mittyrobotics.autonomous.pathfollowing.Path;
+import com.github.mittyrobotics.autonomous.pathfollowing.PurePursuitPath;
 import com.github.mittyrobotics.autonomous.pathfollowing.Pose2D;
 import com.github.mittyrobotics.autonomous.pathfollowing.RamsetePath;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
@@ -29,7 +29,7 @@ public class RamsetePFCommand extends CommandBase {
     }
 
     public RamsetePFCommand(RamsetePath trajectory, double b, double Z, boolean reverse) {
-        this(trajectory, b, Z, 1 * Path.TO_METERS, 5 * Path.TO_METERS, reverse);
+        this(trajectory, b, Z, 1 * PurePursuitPath.TO_METERS, 5 * PurePursuitPath.TO_METERS, reverse);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class RamsetePFCommand extends CommandBase {
         Pose2D robotPose = Odometry.getInstance().getRobotPose();
         robotPose.getAngle().add((reverse ? Math.PI : 0));
 
-//      update(Pose2D robotPose, double dt, double end_threshold, double adjust_threshold, int newtonsSteps, double b, double Z, double trackwidth) {
-        DifferentialDriveState dds = trajectory.update(robotPose, dt, end_threshold, adjust_threshold, 50, b, Z, TRACKWIDTH);
+//      update(Pose2D robotPose, double dt, double adjust_threshold, int newtonsSteps, double b, double Z, double trackwidth) {
+        DifferentialDriveState dds = trajectory.update(robotPose, dt, adjust_threshold, 50, b, Z, TRACKWIDTH);
 
         if(reverse) {
             DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity(), -dds.getLeftVelocity());

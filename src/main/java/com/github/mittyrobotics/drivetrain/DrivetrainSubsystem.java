@@ -26,7 +26,6 @@ package com.github.mittyrobotics.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.github.mittyrobotics.autonomous.pathfollowing.Path;
 import com.github.mittyrobotics.util.interfaces.IDualMotorSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -254,23 +253,20 @@ public class DrivetrainSubsystem extends SubsystemBase implements IDualMotorSubs
         this.latestRightVelSetpoint = rightVel;
 
         double measuredLeft = getLeftVelocity();
-        double FFLeft = DriveConstants.DRIVE_FALCON_FF * leftVel + DriveConstants.DRIVE_FALCON_D * ((measuredLeft - leftLastMeasured) / .02);
-        leftLastMeasured = measuredLeft;
-
         double errorLeft = leftVel - measuredLeft;
-        double FBLeft = DriveConstants.DRIVE_FALCON_P * errorLeft;
-        double left = (FFLeft + FBLeft);
+        double left = DriveConstants.DRIVE_FALCON_FF * leftVel + DriveConstants.DRIVE_FALCON_P * errorLeft + DriveConstants.DRIVE_FALCON_D * ((measuredLeft - leftLastMeasured) / .02);
         left = MathUtil.clamp(left, -1, 1);
+
+        leftLastMeasured = measuredLeft;
 
 
 
         double measuredRight = getRightVelocity();
-        double FFRight = DriveConstants.DRIVE_FALCON_FF * rightVel + DriveConstants.DRIVE_FALCON_D * ((measuredRight - rightLastMeasured) / .02);
-        rightLastMeasured = measuredRight;
-
         double errorRight = rightVel - measuredRight;
-        double right = (FFRight + DriveConstants.DRIVE_FALCON_P * errorRight);
+        double right = DriveConstants.DRIVE_FALCON_FF * rightVel + DriveConstants.DRIVE_FALCON_P * errorRight + DriveConstants.DRIVE_FALCON_D * ((measuredRight - rightLastMeasured) / .02);
         right = MathUtil.clamp(right, -1, 1);
+
+        rightLastMeasured = measuredRight;
 
         overrideSetMotor(left, right);
     }

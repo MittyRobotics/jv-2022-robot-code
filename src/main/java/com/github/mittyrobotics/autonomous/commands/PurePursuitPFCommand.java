@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.github.mittyrobotics.autonomous.AutonomousConstants;
 import com.github.mittyrobotics.autonomous.Odometry;
 import com.github.mittyrobotics.autonomous.pathfollowing.DifferentialDriveState;
-import com.github.mittyrobotics.autonomous.pathfollowing.Path;
+import com.github.mittyrobotics.autonomous.pathfollowing.PurePursuitPath;
 import com.github.mittyrobotics.autonomous.pathfollowing.Pose2D;
 import com.github.mittyrobotics.drivetrain.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Timer;
@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class PurePursuitPFCommand extends CommandBase {
 
-    private Path trajectory;
+    private PurePursuitPath trajectory;
     private double lastTime;
     private double LOOKAHEAD, end_threshold, adjust_threshold;
     private final double TRACKWIDTH = AutonomousConstants.TRACKWIDTH;
     private boolean reverse;
 
-    public PurePursuitPFCommand(Path trajectory, double LOOKAHEAD, double end_threshold, double adjust_threshold, boolean reverse) {
+    public PurePursuitPFCommand(PurePursuitPath trajectory, double LOOKAHEAD, double end_threshold, double adjust_threshold, boolean reverse) {
         addRequirements(DrivetrainSubsystem.getInstance());
         this.trajectory = trajectory;
         this.reverse = reverse;
@@ -27,8 +27,8 @@ public class PurePursuitPFCommand extends CommandBase {
         this.LOOKAHEAD = LOOKAHEAD;
     }
 
-    public PurePursuitPFCommand(Path trajectory, double LOOKAHEAD, boolean reverse) {
-        this(trajectory, LOOKAHEAD, 1 * Path.TO_METERS, 3 * Path.TO_METERS, reverse);
+    public PurePursuitPFCommand(PurePursuitPath trajectory, double LOOKAHEAD, boolean reverse) {
+        this(trajectory, LOOKAHEAD, 1 * PurePursuitPath.TO_METERS, 3 * PurePursuitPath.TO_METERS, reverse);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class PurePursuitPFCommand extends CommandBase {
         robotPose.getAngle().add((reverse ? Math.PI : 0));
 
 
-//      update(Pose2D robotPose, double dt, double lookahead, double end_threshold, double adjust_threshold, int newtonsSteps, double trackwidth)
-        DifferentialDriveState dds = trajectory.update(robotPose, dt, LOOKAHEAD, end_threshold, adjust_threshold, 50, TRACKWIDTH);
+//      update(Pose2D robotPose, double dt, double lookahead, double adjust_threshold, int newtonsSteps, double trackwidth)
+        DifferentialDriveState dds = trajectory.update(robotPose, dt, LOOKAHEAD, adjust_threshold, 50, TRACKWIDTH);
 
         if(reverse) {
             DrivetrainSubsystem.getInstance().tankVelocity(-dds.getRightVelocity(), -dds.getLeftVelocity());

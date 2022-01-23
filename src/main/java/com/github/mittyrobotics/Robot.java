@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
 
         QuinticHermiteSpline spline = new QuinticHermiteSpline(
                 new Pose2D(0, 0, 0),
-                new Pose2D(120 * Path.TO_METERS, 50 * Path.TO_METERS, 0)
+                new Pose2D(120 * PurePursuitPath.TO_METERS, 50 * PurePursuitPath.TO_METERS, 0)
         );
 
 //        Path path = new Path(spline,
@@ -62,13 +62,13 @@ public class Robot extends TimedRobot {
 //        pathCommand.schedule();
 
         RamsetePath path = new RamsetePath(spline,
-                100 * Path.TO_METERS, 100 * Path.TO_METERS,
-                100 * Path.TO_METERS, 10000 * Path.TO_METERS,
-                0 * Path.TO_METERS, 0 * Path.TO_METERS
+                100 * PurePursuitPath.TO_METERS, 100 * PurePursuitPath.TO_METERS,
+                100 * PurePursuitPath.TO_METERS, 10000 * PurePursuitPath.TO_METERS,
+                0 * PurePursuitPath.TO_METERS, 0 * PurePursuitPath.TO_METERS
         );
 
 
-        RamsetePFCommand pathCommand = new RamsetePFCommand(path, 5, 0.2, 3 * Path.TO_METERS, 100000, false);
+        RamsetePFCommand pathCommand = new RamsetePFCommand(path, 5, 0.2, 3 * PurePursuitPath.TO_METERS, 100000, false);
 
         pathCommand.schedule();
     }

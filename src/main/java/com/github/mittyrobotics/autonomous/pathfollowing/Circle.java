@@ -89,7 +89,7 @@ public class Circle {
      * @return string representation of the {@link Circle} in inches
      */
     public String toString() {
-        return "radius = " + radius * Path.TO_INCHES + ", " + "center = " + center.toString();
+        return "radius = " + radius * PurePursuitPath.TO_INCHES + ", " + "center = " + center.toString();
     }
 
     /**

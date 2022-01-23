@@ -4,8 +4,8 @@ public class Point2D {
     /**
      * The x and y coordinates of the point
      */
-    private double x;
-    private double y;
+    public double x;
+    public double y;
 
     /**
      * Create a new point based on x and y coordinates
@@ -29,7 +29,7 @@ public class Point2D {
      * @param v {@link Vector2D} to create point with
      */
     public Point2D(Vector2D v) {
-        this(v.getX(), v.getY());
+        this(v.x, v.y);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Point2D {
      */
     public double distance(Point2D other) {
         //sqrt((x1-x2)^2 + (y1-y2)^2)
-        return Math.sqrt((other.getX() - x) * (other.getX() - x) + (other.getY() - y) * (other.getY() - y));
+        return Math.sqrt((other.x - x) * (other.x - x) + (other.y - y) * (other.y - y));
     }
 
     /**
@@ -73,7 +73,7 @@ public class Point2D {
      * @return a new {@link Point2D} with the sum of the two points
      */
     public Point2D add(Point2D other) {
-        return new Point2D(this.x + other.getX(), this.y + other.getY());
+        return new Point2D(this.x + other.x, this.y + other.y);
     }
 
     /**

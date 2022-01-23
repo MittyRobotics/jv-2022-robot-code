@@ -5,8 +5,8 @@ public class RamseteController {
     /**
      * Variables for ramsete calculations (for debugging)
      */
-    private static double ex, ey, et, k, rvel, rAngVel;
-    private static Angle t, td;
+    public static double ex, ey, et, k, rvel, rAngVel, vel, angVel;
+    public static Angle t, td;
 
     /**
      * Returns a {@link DifferentialDriveState} based on a current {@link Pose2D}, desired {@link Pose2D}, desired linear velocity, desired angular velocity, tuning constants
@@ -23,6 +23,9 @@ public class RamseteController {
         //https://file.tavsys.net/control/controls-engineering-in-frc.pdf (literally copied from this)
 
         //b > 0, 0 < Z < 1, larger b -> faster convergence, larger Z -> more dampening
+
+        vel = desiredVelocity;
+        angVel = desiredAngularVelocity;
 
         k = 2*Z*Math.sqrt(desiredAngularVelocity*desiredAngularVelocity + b * desiredVelocity * desiredVelocity);
 

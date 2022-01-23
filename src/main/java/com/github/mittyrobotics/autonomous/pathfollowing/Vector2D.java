@@ -56,7 +56,7 @@ public class Vector2D {
      * @return a new vector representing the sum of this and the other vector
      */
     public Vector2D add(Vector2D other) {
-        return new Vector2D(this.x + other.getX(), this.y + other.getY());
+        return new Vector2D(this.x + other.x, this.y + other.y);
     }
 
     /**
